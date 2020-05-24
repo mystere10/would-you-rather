@@ -5,7 +5,7 @@ import {setAuthedUser} from './authedUser'
 
 const AUTHED_USER = null
 
-export function handleInitialQuestions(){
+export function handleInitialData(){
     return (dispatch) => {
         return getInitialData().then(({users, questions}) => {
             dispatch(getUsers(users))

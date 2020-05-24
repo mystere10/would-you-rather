@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {handleInitialData} from '../actions/shared'
+import NavBar from './NavBar'
+import Login from './Login'
 
-function App() {
-  return (
-    <div className="App">
-      <p>Welcome to would you rather?</p>
-    </div>
-  );
+class App extends Component {
+
+  componentDidMount(){
+    this.props.dispatch(handleInitialData())
+  }
+  render() {
+    return (
+      <Router>
+        <div>
+          <NavBar/>
+          <div>
+            <Route path='/' component={Login}/>
+          </div>
+        </div>
+      </Router>
+      
+    )
+  }
 }
 
-export default App;
+export default connect()(App);
