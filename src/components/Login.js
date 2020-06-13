@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {redirect, Redirect} from 'react-router-dom'
+import {setAuthedUser} from '../actions/authedUser'
 
 class Login extends Component {
+
+    state={
+        value: '',
+        toHome: false
+    }
 
     makeOptions(){
         const optionArray = []
@@ -14,13 +21,38 @@ class Login extends Component {
             return optionArray
         }
     }
+
+    onChange = (value) => {
+        this.setState({value})
+        console.log("value", this.state.value)
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
+        const {setAuthedUser} = this.props
+        const authUser = this.state.value
+        new Promise((res, rej) => {
+            setTimeout(() => res(), 500);
+        }).then(() => setAuthedUser(authUser));
+
+        this.setState({toHome: authUser !== null ? true : false})
+        console.log("value", this.state.toHome)
+    }
     render() {
+        const {toHome} = this.state
+        const {authedUser} = this.props
+        if(toHome === true && authedUser !== null){
+            return <Redirect to='/'  />
+        }
+
+        console.log("auth", this.props.authedUser)
         
         return (
             <div className='container'>
-                <form >
+                <form onSubmit={this.handleSubmit}>
                     <label>Login</label>
-                    <select>
+                    <select onChange={(e) => this.onChange(e.target.value)}>
+                        <option>Select user</option>
                         {this.makeOptions()}
                     </select>
                     <button className='btn'>Sign in</button>
@@ -30,10 +62,11 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps({users}) {
+function mapStateToProps({users, authedUser}) {
     return {
-        userNames: Object.keys(users)
+        authedUser,
+        userNames: Object.keys(users),
     }
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, {setAuthedUser})(Login)
