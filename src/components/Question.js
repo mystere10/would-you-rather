@@ -4,8 +4,7 @@ class Question extends Component {
     render() {     
         
         const {userQuestion, unanswered} = this.props
-        const { name, author, avatarURL, optionOne, optionTwo } = userQuestion
-
+        const { id, name, author, avatarURL, optionOne, optionTwo } = userQuestion
         return (
                 <div className='question'>
                 {unanswered === true ? (
@@ -44,27 +43,6 @@ class Question extends Component {
 }
 
 function mapStateToProps({users, questions, authedUser}, {id}) {
-    // const answeredIds = Object.keys(users[authedUser].answers);
-    // const answered = Object.values(questions)
-    //     .filter(question => answeredIds.includes(question.id))
-    //     .sort((a, b) => b.timestamp - a.timestamp);
-    
-    // console.log("answers", answeredIds)
-    // const question = questions[id]
-    // const user = users[question.author]
-    
-    // const answered = {question, ...user}
-    // const answeredQuestion = Object.values(answered)
-    //     .filter(question => answeredIds.includes(question.id))
-    //     .sort((a, b) => b.question.timestamp - a.question.timestamp);
-
-    // const userAnswered = Object.keys(users[authedUser].answers)
-
-    // const answeredQuestion = Object.values(questions)
-    //     .filter(question => userAnswered.includes(question.id))
-    //     .sort((a, b) => b.timestamp - a.timestamp);
-
-
     const userQuestion = questions[id]
     return {
         authedUser,

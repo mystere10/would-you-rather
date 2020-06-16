@@ -5,6 +5,7 @@ import {handleInitialData} from '../actions/shared'
 import NavBar from './NavBar'
 import Login from './Login'
 import Home from './Home'
+import NewQuestion from './NewQuestion'
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
               <Fragment>
                 <NavBar />
                 <Route exact path='/' component={Home}/>
+                <Route exact path='/add' component={NewQuestion}/>
               </Fragment>
             )}
           </div>

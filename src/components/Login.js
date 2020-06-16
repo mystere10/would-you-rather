@@ -24,7 +24,6 @@ class Login extends Component {
 
     onChange = (value) => {
         this.setState({value})
-        console.log("value", this.state.value)
     }
 
     handleSubmit = e => {
@@ -36,16 +35,13 @@ class Login extends Component {
         }).then(() => setAuthedUser(authUser));
 
         this.setState({toHome: authUser !== null ? true : false})
-        console.log("value", this.state.toHome)
     }
     render() {
         const {toHome} = this.state
         const {authedUser} = this.props
         if(toHome === true && authedUser !== null){
-            return <Redirect to='/'  />
+            return <Redirect to='/' />
         }
-
-        console.log("auth", this.props.authedUser)
         
         return (
             <div className='container'>
