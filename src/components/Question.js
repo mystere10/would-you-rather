@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import ViewPollBtn from './ViewPollBtn'
 class Question extends Component {
+    state = {
+        ans_button: 'answered',
+        unans_button: 'unaswered'
+    }
     render() {     
-        
+        const { ans_button, unans_button} = this.state
         const {userQuestion, unanswered} = this.props
         const { id, name, author, avatarURL, optionOne, optionTwo } = userQuestion
         return (
@@ -18,7 +23,14 @@ class Question extends Component {
                         <div className="view-poll">
                             <p id="title">Would you rather</p>
                             <p>...{optionOne.text}</p>
-                            <button className="btn">View Poll</button>
+                            <ViewPollBtn 
+                                qid={id} 
+                                ans={unans_button} 
+                                optionOne={optionOne} 
+                                optionTwo={optionTwo} 
+                                author={name}
+                                avatar={avatarURL}
+                            />
                         </div>
                     </div>
                 ):(
@@ -33,7 +45,13 @@ class Question extends Component {
                             <p id="title">Would you rather</p>
                             <p>...{optionOne.text}</p>
                             {/* <p>{optionTwo.text}</p> */}
-                            <button className="btn">View Poll</button>
+                            <ViewPollBtn qid={id} 
+                                ans={ans_button} 
+                                optionOne={optionOne} 
+                                optionTwo={optionTwo} 
+                                author={name}
+                                avatar={avatarURL}
+                            />
                         </div>
                     </div>
                 )}

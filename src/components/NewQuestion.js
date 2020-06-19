@@ -30,8 +30,6 @@ class NewQuestion extends Component {
     }
     render() {
         const {question1, question2} = this.state
-        const {auth_user} = this.props
-        const {name, avatarURL} = auth_user
 
         return (
             <div className="question">

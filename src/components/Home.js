@@ -18,7 +18,7 @@ class Home extends Component {
 
 
     render() {
-        const {authedUser, answeredQuestion, unAnsweredQuestion} = this.props
+        const {answeredQuestion, unAnsweredQuestion} = this.props
   
         return (
             <Fragment>

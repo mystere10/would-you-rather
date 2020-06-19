@@ -6,6 +6,8 @@ import NavBar from './NavBar'
 import Login from './Login'
 import Home from './Home'
 import NewQuestion from './NewQuestion'
+import AnswerQuestion from './AnswerQuestion'
+import loading from 'react-redux-loading'
 
 class App extends Component {
 
@@ -24,6 +26,7 @@ class App extends Component {
                 <NavBar />
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/add' component={NewQuestion}/>
+                <Route exact path='/question/:question_id' component={AnswerQuestion}/>
               </Fragment>
             )}
           </div>

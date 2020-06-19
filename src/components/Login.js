@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {redirect, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {setAuthedUser} from '../actions/authedUser'
 
 class Login extends Component {
@@ -45,7 +45,7 @@ class Login extends Component {
         
         return (
             <div className='container'>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} className="form">
                     <label>Login</label>
                     <select onChange={(e) => this.onChange(e.target.value)}>
                         <option>Select user</option>

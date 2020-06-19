@@ -53,7 +53,7 @@ code {
   height: 100%;
 }
 
-.container form{
+.form{
   background-color: #dff9fb;
 	padding: 30px;
 	width: 400px;
@@ -61,7 +61,7 @@ code {
   margin: auto;
 }
 
-.container form select{
+.form select{
   padding: 5px;
   width: 100%;
   height: 30px;
@@ -70,7 +70,7 @@ code {
 
 .btn{
   padding: 5px;
-  width: 100%;
+  width: 250px;
   height: 30px;
   border-radius: 5px;
   margin-top: 10px;
@@ -140,6 +140,7 @@ label{
   padding: 5px;
   margin: 0;
   border-radius: 3px;
+  font-weight: bold;
 }
 
 .view-poll{
@@ -168,4 +169,53 @@ label{
   background-color: #130f40;
   color: white;
   cursor: pointer;
+}
+
+.answer-form{
+  display: inline-block;
+  text-align: center;
+  margin-left: 20%;
+}
+
+.voted{
+  background-color: #55efc4;
+}
+
+.option-box{
+  border: 2px solid darkcyan;
+  border-radius: 5px;
+  padding: 5px;
+  width: 400px;
+  margin-bottom: 2px;
+}
+
+.results{
+  width: 590px;
+  padding: 10px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  background-color: #dff9fb;
+}
+
+.view-result{
+  display: inline-block;
+  text-align: center;
+  float: right;
+}
+
+.status-bar{
+  background-color: #16a085;
+  border: 1px solid #dad7d7;
+}
+
+.status-bar-back{
+  border: 1px solid #dad7d7;
+  background-color: #ecf0f1;
+}
+
+.percentage{
+  text-align: center;
+  padding: 2px 175px;
 }
