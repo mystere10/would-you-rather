@@ -1,6 +1,28 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {handleSaveAnswer, } from '../actions/questions'
+import {handleSaveAnswerToUser} from '../actions/users'
 
-export default class AnswerForm extends Component {
+class AnswerForm extends Component {
+    state= {
+        qid: '',
+        answer: ''
+    }
+
+    handleChange = (e, qid) => {
+        e.preventDefault()
+        this.setState({ qid })
+        this.setState({ answer: e.target.value})
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const {qid, answer} = this.state
+        const {dispatch} = this.props
+
+        dispatch(handleSaveAnswer(qid, answer))
+        dispatch(handleSaveAnswerToUser(qid, answer))
+    }
     render() {
         const {qid, author, avatar, optionOne, optionTwo} = this.props
         return (
@@ -18,9 +40,8 @@ export default class AnswerForm extends Component {
                                 <input 
                                     type="radio" 
                                     name="question"
-                                    // value={this.state.question1} 
-                                    onChange={this.handleChange}
-                                    // className="question_field"
+                                    value="optionOne" 
+                                    onChange={(e) => this.handleChange(e, qid)}
                                 />
                             </label><label>{optionOne.text}</label>
                         </div>
@@ -29,9 +50,8 @@ export default class AnswerForm extends Component {
                                 <input 
                                     type="radio"
                                     name="question" 
-                                    // value={this.state.question2} 
-                                    onChange={this.handleChange}
-                                    // className="question_field"
+                                    value="optionTwo"
+                                    onChange={(e) => this.handleChange(e, qid)}
                                 />
                             </label><label>{optionTwo.text}</label>
                         </div>
@@ -43,3 +63,5 @@ export default class AnswerForm extends Component {
         )
     }
 }
+
+export default connect()(AnswerForm)

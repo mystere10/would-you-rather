@@ -1,5 +1,6 @@
-import {saveQuestion, savaQuestionAnswer} from '../utils/api'
+import {saveQuestion, saveQuestionAnswer} from '../utils/api'
 import {showLoading, hideLoading} from 'react-redux-loading'
+import {saveQuestonToUser} from '../actions/users'
 
 
 export const GET_QUESTIONS = 'GET_QUESTIONS'
@@ -20,10 +21,12 @@ function addQuestion(question) {
     }
 }
 
-function saveAnswer(question) {
+function saveAnswer(authedUser, qid, answer) {
     return {
         type: ADD_QUESTION_ANSWER,
-        question
+        authedUser,
+        qid,
+        answer
     }
 }
 
@@ -38,6 +41,7 @@ export function handleAddQuestion(optionOneText, optionTwoText){
             author: authedUser
         }).then((quest) => {
             dispatch(addQuestion(quest))
+            dispatch(saveQuestonToUser(quest))
         }).then(() => dispatch(hideLoading()))
     }
 }
@@ -45,13 +49,10 @@ export function handleAddQuestion(optionOneText, optionTwoText){
 export function handleSaveAnswer(qid, answer) {
     return (dispatch, getState) => {
         const {authedUser} = getState()
-        dispatch(showLoading())
-        return savaQuestionAnswer({
-            authedUser,
-            qid,
-            answer
-        }).then((response) => {
-            dispatch(saveAnswer(response))
-        }).then(() => dispatch(hideLoading()))
+        dispatch(saveAnswer(authedUser, qid, answer))
+        return saveQuestionAnswer(authedUser, qid, answer)
+            .catch(e => {
+            console.log('An error occured', e);
+        });
     }
 }
