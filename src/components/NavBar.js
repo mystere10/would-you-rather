@@ -1,25 +1,54 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
+import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
+import {setAuthedUser} from '../actions/authedUser'
+class NavBar extends Component {
 
-function NavBar() {
-    return (
-        <div className='nav-bar'>
-            <ul>
-                <li>
-                    <NavLink to='/' activeClassName='active'>Home</NavLink>
-                </li>
-                
-                <li>
-                    <NavLink to='/add' activeClassName='active'>New question</NavLink>
-                </li>
+    resetAuthUser = () => {
+        const {dispatch} = this.props
+        dispatch(setAuthedUser(null))
+    }
+    render() {
+        const {user} = this.props
+        return (
+            <div className='nav-bar'>
+                <ul>
+                    <li>
+                        <NavLink to='/' activeClassName='active'>Home</NavLink>
+                    </li>
+                    
+                    <li>
+                        <NavLink to='/add' activeClassName='active'>New question</NavLink>
+                    </li>
 
-                <li>
-                    <NavLink to='/leader-board' activeClassName='active'>Leader board</NavLink>
-                </li>
-            </ul>
-        </div>
-    )
+                    <li>
+                        <NavLink to='/leaderboard' activeClassName='active'>Leader board</NavLink>
+                    </li>
+
+                    <li>
+                        Hello, {user.name}
+                        <img 
+                            src={user.avatarURL}
+                            alt={`Avatar of ${user.author}`}
+                            className='avatarNav'
+                        />
+                    </li>
+
+                    <li>
+                        <button onClick={this.resetAuthUser}>Logout</button>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
 }
 
-export default connect()(NavBar)
+
+function mapStateToprops({authedUser, users}){
+    const user = users[authedUser]
+    return {
+        user
+    }
+}
+
+export default connect(mapStateToprops)(NavBar)

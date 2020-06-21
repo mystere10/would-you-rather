@@ -44,7 +44,6 @@ class Question extends Component {
                         <div className="view-poll">
                             <p id="title">Would you rather</p>
                             <p>...{optionOne.text}</p>
-                            {/* <p>{optionTwo.text}</p> */}
                             <ViewPollBtn qid={id} 
                                 ans={ans_button} 
                                 optionOne={optionOne} 
@@ -55,7 +54,7 @@ class Question extends Component {
                         </div>
                     </div>
                 )}
-                </div>
+            </div>
         )
     }
 }

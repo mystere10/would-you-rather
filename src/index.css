@@ -219,3 +219,17 @@ label{
   text-align: center;
   padding: 2px 175px;
 }
+
+#score{
+  font-weight: bold;
+  font-size: 2em;
+  background-color: #16a085;
+  border-radius: 50px;
+}
+
+.avatarNav{
+  height: 30px;
+  border-radius: 50px;
+  margin-left: 5px;
+}
+

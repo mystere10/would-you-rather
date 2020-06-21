@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://pbs.twimg.com/profile_images/1138547910524588034/4R6jdBch_400x400.png',
+    avatarURL: 'https://pbs.twimg.com/profile_images/1230489245409841153/xsN-AHmN_400x400.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -172,7 +172,6 @@ export function _saveQuestion (question) {
 }
 
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
-  console.log("<>",authedUser, qid, answer)
   return new Promise((res, rej) => {
     setTimeout(() => {
       users = {

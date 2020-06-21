@@ -9,8 +9,8 @@ class AnswerQuestion extends Component {
         const {qid, category, author, avatar, optionOne, optionTwo} = this.props.location.state
 
         const numberOfUsers = Object.keys(users).length
-        const optionOneLength = optionOne.votes.length
-        const optionTwoLength = optionTwo.votes.length
+        const optionOneLength = questions[qid].optionOne.votes.length
+        const optionTwoLength = questions[qid].optionTwo.votes.length
 
         const optionOneVote = questions[qid].optionOne.votes.includes(authedUser) ? 'voted option-box' : 'option-box'
         const optionTwoVote = questions[qid].optionTwo.votes.includes(authedUser) ? 'voted option-box' : 'option-box'

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {Redirect, withRouter} from 'react-router-dom'
 import {handleSaveAnswer, } from '../actions/questions'
 import {handleSaveAnswerToUser} from '../actions/users'
 
 class AnswerForm extends Component {
     state= {
         qid: '',
-        answer: ''
+        answer: '',
     }
 
     handleChange = (e, qid) => {
@@ -15,16 +16,24 @@ class AnswerForm extends Component {
         this.setState({ answer: e.target.value})
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (e, id, optionOne, optionTwo, author, avatar) => {
         e.preventDefault()
         const {qid, answer} = this.state
         const {dispatch} = this.props
 
         dispatch(handleSaveAnswer(qid, answer))
         dispatch(handleSaveAnswerToUser(qid, answer))
+
+        setTimeout(() => {
+            this.props.history.push({
+                pathname: `/question/${id}`,
+                state: {qid: id, optionOne: optionOne, optionTwo: optionTwo, category: 'answered', author: author, avatar: avatar}
+            })
+        }, 1000);
     }
     render() {
         const {qid, author, avatar, optionOne, optionTwo} = this.props
+
         return (
             <div>
                 <div className="author">{author} asks</div>
@@ -33,7 +42,7 @@ class AnswerForm extends Component {
                         alt={`Avatar of ${author}`}
                         className='avatar'
                     />
-                    <form onSubmit={this.handleSubmit} className="answer-form">
+                    <form onSubmit={(e) => this.handleSubmit(e, qid, optionOne, optionTwo, author, avatar)} className="answer-form">
                         <label id="title">Would you rather</label>
                         <div>
                             <label>
@@ -64,4 +73,4 @@ class AnswerForm extends Component {
     }
 }
 
-export default connect()(AnswerForm)
+export default withRouter(connect()(AnswerForm))
