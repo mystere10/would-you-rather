@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { handleAddQuestion} from '../actions/questions'
+import {Redirect} from 'react-router-dom'
 
 class NewQuestion extends Component {
 
     state={
         question1: '',
-        question2:''
+        question2:'',
+        toHome: false
     }
 
     handleChange = (e) => {
@@ -22,15 +24,19 @@ class NewQuestion extends Component {
         const name = e.target.name
         const {dispatch} = this.props
         this.setState({
-            [name]: ''
+            [name]: '',
+            toHome: true
         })
         const {question1, question2} = this.state
 
         dispatch(handleAddQuestion(question1, question2))
     }
     render() {
-        const {question1, question2} = this.state
+        const {question1, question2, toHome} = this.state
 
+        if(toHome === true){
+            return <Redirect to='/'/>
+        }
         return (
             <div className="question">
                 <form onSubmit={this.handleSubmit}>
@@ -68,7 +74,7 @@ class NewQuestion extends Component {
     }
 }
 
-function mapStateToProps({users, questions, authedUser}) {
+function mapStateToProps({users, authedUser}) {
     const auth_user = users[authedUser]
     return{
         auth_user

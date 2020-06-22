@@ -7,7 +7,6 @@ import Login from './Login'
 import Home from './Home'
 import NewQuestion from './NewQuestion'
 import AnswerQuestion from './AnswerQuestion'
-import loading from 'react-redux-loading'
 import LeaderBoard from './LeaderBoard'
 import NotFound from './NotFound'
 
@@ -29,7 +28,7 @@ class App extends Component {
                 <Switch>
                   <Route exact path='/' component={Home}/>
                   <Route path='/add' component={NewQuestion}/>
-                  <Route path='/question/:question_id' component={AnswerQuestion}/>
+                  <Route path='/questions/:question_id' component={AnswerQuestion}/>
                   <Route path='/leaderboard' component={LeaderBoard}/>
                   <Route component={NotFound}/>
                 </Switch>

@@ -10,7 +10,7 @@ class ViewPollBtn extends Component {
     handleVotePanel = (e, id, optionOne, optionTwo, ans, author, avatar) => {
         e.preventDefault()
         this.props.history.push({
-            pathname: `/question/${id}`,
+            pathname: `/questions/${id}`,
             state: {qid: id, optionOne: optionOne, optionTwo: optionTwo, category: ans, author: author, avatar: avatar}
         })
     }
