@@ -26,7 +26,7 @@ class AnswerForm extends Component {
 
         setTimeout(() => {
             this.props.history.push({
-                pathname: `/question/${id}`,
+                pathname: `/questions/${id}`,
                 state: {qid: id, optionOne: optionOne, optionTwo: optionTwo, category: 'answered', author: author, avatar: avatar}
             })
         }, 1000);

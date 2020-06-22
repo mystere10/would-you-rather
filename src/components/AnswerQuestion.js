@@ -6,9 +6,12 @@ import AnswerForm from './AnswerForm'
 class AnswerQuestion extends Component {
  
     render() {
-        if (!this.props.location.state) return <Redirect to='/question'/>
-
         const {authedUser, questions, users} = this.props
+
+        const {question_id} = this.props.match.params
+
+        if (!this.props.location.state || !questions[question_id]) return <Redirect to='/question'/>
+
         const {qid, category, author, avatar, optionOne, optionTwo} = this.props.location.state
 
         const numberOfUsers = Object.keys(users).length
