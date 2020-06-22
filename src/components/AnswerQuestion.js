@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import AnswerForm from './AnswerForm'
 
 class AnswerQuestion extends Component {
  
     render() {
+        if (!this.props.location.state) return <Redirect to='/question'/>
+
         const {authedUser, questions, users} = this.props
         const {qid, category, author, avatar, optionOne, optionTwo} = this.props.location.state
 
