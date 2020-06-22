@@ -9,6 +9,7 @@ import NewQuestion from './NewQuestion'
 import AnswerQuestion from './AnswerQuestion'
 import loading from 'react-redux-loading'
 import LeaderBoard from './LeaderBoard'
+import NotFound from './NotFound'
 
 class App extends Component {
 
@@ -28,7 +29,9 @@ class App extends Component {
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/add' component={NewQuestion}/>
                 <Route exact path='/question/:question_id' component={AnswerQuestion}/>
+                <Route exact path='/question/not_found' component={NotFound}/>
                 <Route exact path='/leaderboard' component={LeaderBoard}/>
+                <Route component={NotFound}/>
               </Fragment>
             )}
           </div>
